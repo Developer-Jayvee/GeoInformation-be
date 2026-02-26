@@ -35,11 +35,21 @@ class LoginService{
         }
         $token = $userInfo->createToken('userlogin-token')->plainTextToken;
         return response()->json([
-            'token' => $token
+            'token' => $token,
+            'status' => 1,
+            'message' => 'Successfully Login'
         ]);
     }
     protected function checkIfExist($column , $value)
     {
         return User::where($column,$value)->first();
+    }
+    public function logout($request)
+    {
+        $request->user()->currentAccessToken()->delete();
+        return response()->json([
+            'status' => 1,
+            'message' => 'Successfully deleted'
+        ]);
     }
 }

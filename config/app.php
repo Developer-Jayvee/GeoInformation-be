@@ -185,4 +185,7 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'ip_info_url' => env('IPINFO_URL'),
+    'ip_info_geo' => env('IPINFO_URL_GEO')
+
 ];

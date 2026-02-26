@@ -20,4 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::resource('login', \App\Http\Controllers\LoginController::class);
-Route::post('logout', [\App\Http\Controllers\LoginController::class, 'logout']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('logout', [\App\Http\Controllers\LoginController::class, 'logout']);
+    Route::get('geo',[\App\Http\Controllers\APIController::class,'index']);
+});
